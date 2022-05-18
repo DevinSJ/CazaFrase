@@ -210,7 +210,7 @@ body{
   /* Modal Content/Box */
   .modal-content {
     background-image: url(../media/img/background2.jpg);
-    background-position: 400px 200px;
+    background-position: 100% 110%;
     background-repeat: no-repeat;
     background-color: black;
     background-size: 850px;
@@ -418,3 +418,13 @@ body{
  .rankingText{
      margin-top: 50px;
  }
+
+ #textFinal{
+     margin-bottom: 50px;
+     font-size: 3rem;
+ }
+
+ #lastScore{
+     font-size: 3rem;
+ }
+

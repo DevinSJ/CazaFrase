@@ -870,157 +870,11 @@ document.addEventListener('DOMContentLoaded', function () {
            
 
             document.getElementById("textFinal").innerHTML = textFinal;
-            document.getElementById("lastScore").innerHTML = "Your score is: " + score;
-            // showRanking();
+            document.getElementById("lastScore").innerHTML = "Your score is: " + score + " points";
             modal.style.display = "block"; 
             btnBack.style.display = "none";  
         
         }
-
-        // function showRanking(){
-        //     let tablaRanking = document.getElementById("ranking");
-        //     tablaRanking.innerHTML = "";
-        //     const opcion = {
-        //         method: 'POST',
-        //         body: JSON.stringify({action: 'selectScores'})
-        //     }
-
-                        
-        //     fetch('./php_librarys/bd.php', opcion)
-        //     .then(respuesta => respuesta.json())
-        //     .then(resultado => {
-                
-        //         cont = 1; 
-        //         resultado.forEach(user => {
-                    
-        //             tablaRanking.innerHTML += `
-        //             <tr>
-        //                 <th>${cont}</th>
-        //                 <th>${user.nickname}</th>
-        //                 <th>${user.score}</th>
-        //             </tr>`
-        //             cont++;
-        //         });
-        //     });
-
-        // }
-
-
-        function moveToRandom(enemy){
-            let maxX = 29;
-            let maxY = 27;
-
-            let pointX = Math.floor(Math.random() * maxX);
-            let pointY = Math.floor(Math.random() * maxY);
-
-            let firstYPosition = enemy.currentIndexY;
-            let firstXPosition = enemy.currentIndexX;
-
-            if(!elements[pointY][pointX].classList.contains('wall') 
-            && !elements[pointY][pointX].classList.contains('no-enemies') 
-            && !elements[pointY][pointX].classList.contains('enemy-territory')){
-                if(Math.abs((pointX - firstXPosition)) >= Math.abs((pointY - firstYPosition))){
-                    if(firstXPosition < pointX){
-                        if(!elements[firstYPosition][firstYPosition + 1].classList.contains('wall') 
-                        && !elements[firstYPosition][firstYPosition + 1].classList.contains('no-enemies') 
-                        && !elements[firstYPosition][firstYPosition + 1].classList.contains('enemy-territory')){
-        
-                        elements[enemy.currentIndexY][enemy.currentIndexX].classList.remove(enemy.className, 'enemy');
-                        
-                        if(elements[enemy.currentIndexY][enemy.currentIndexX  + 1].classList.contains('small-dots')){
-                            elements[enemy.currentIndexY][enemy.currentIndexX + 1].classList.remove('small-dots');
-                            elements[enemy.currentIndexY][enemy.currentIndexX + 1].className = 'small-dots-again';
-                            
-            
-                        }else if (elements[enemy.currentIndexY][enemy.currentIndexX + 1].classList.contains('big-dots')){
-                                elements[enemy.currentIndexY][enemy.currentIndexX + 1].classList.remove('big-dots');
-                                elements[enemy.currentIndexY][enemy.currentIndexX + 1].className = 'big-dots-again';
-                        }
-
-                        enemy.currentIndexX += 1;
-                        
-                        elements[enemy.currentIndexY][enemy.currentIndexX].style.transform = null;
-                        
-
-                        elements[enemy.currentIndexY][enemy.currentIndexX].classList.add(enemy.className, 'enemy');
-                        
-                        
-                        if(elements[enemy.currentIndexY][enemy.currentIndexX].classList.contains('small-dots-again') &&
-                        !elements[enemy.currentIndexY][enemy.currentIndexX - 1].classList.contains('wall')){
-
-                            elements[enemy.currentIndexY][enemy.currentIndexX - 1].classList.add('small-dots');
-
-                        }else if (elements[enemy.currentIndexY][enemy.currentIndexX - 1].classList.contains('big-dots-again') && 
-                        !elements[enemy.currentIndexY][enemy.currentIndexX - 1].classList.contains('wall')){
-
-                            if(elements[enemy.currentIndexY][enemy.currentIndexX - 1].classList.contains('big-dots-again')){
-
-                                elements[enemy.currentIndexY][enemy.currentIndexX - 1].classList.remove('big-dots-again');
-                                elements[enemy.currentIndexY][enemy.currentIndexX - 1].className = 'big-dots';
-                            }
-                        }
-        
-        
-                        }else{
-                            pointX = Math.floor(Math.random() * maxX); 
-                        }
-
-                    }else if(firstXPosition > pointX){
-                        if(!elements[firstYPosition][firstYPosition - 1].classList.contains('wall') 
-                        && !elements[firstYPosition][firstYPosition - 1].classList.contains('no-enemies') 
-                        && !elements[firstYPosition][firstYPosition - 1].classList.contains('enemy-territory')){
-        
-                            //Movem l'enemic
-        
-        
-                        }else{
-                            pointX = Math.floor(Math.random() * maxX); 
-                        }
-
-                    }else{
-
-                    }         
-        
-                }else{
-                    if(firstYPosition < pointY){
-                        if(!elements[firstYPosition + 1][firstYPosition].classList.contains('wall') 
-                        && !elements[firstYPosition + 1][firstYPosition].classList.contains('no-enemies') 
-                        && !elements[firstYPosition + 1][firstYPosition].classList.contains('enemy-territory')){
-        
-                            //Movem l'enemic
-        
-        
-                        }else{
-                            pointY = Math.floor(Math.random() * maxY); 
-                        }
-
-                    }else if(firstXPosition > pointX){
-                        if(!elements[firstYPosition - 1][firstYPosition].classList.contains('wall') 
-                        && !elements[firstYPosition - 1][firstYPosition].classList.contains('no-enemies') 
-                        && !elements[firstYPosition - 1][firstYPosition].classList.contains('enemy-territory')){
-        
-                            //Movem l'enemic
-        
-        
-                        }else{
-                            pointY = Math.floor(Math.random() * maxY); 
-                        }
-
-                    }else{
-
-                    }
-                }
-                
-
-
-            }else{
-                pointX = Math.floor(Math.random() * maxX);
-                pointY = Math.floor(Math.random() * maxY);
-            }
-        }
-
-        
-        //Timer del joc
         
         let timer = setInterval(function(){
             const minutes = Math.floor(timeLeft / 60);
@@ -1103,20 +957,6 @@ document.addEventListener('DOMContentLoaded', function () {
         btnPlayAgain.addEventListener("click", restartGame);
 
         function restartGame(){
-            // removeEventListener("click", restartGame);
-            // let modal = document.getElementById("myModal");
-
-            // grid.querySelectorAll('*').forEach(element => {
-            //     element.remove();
-            // });
-
-            // console.log(grid.childElementCount);
-            // modal.style.display = "none";
-            // document.getElementById("gameContainer").style.display = "none";
-            // document.getElementById("timerStartGame").style.display = "block";
-            // score = 0;
-            // startCountDown();
-
             location.reload();
         }
 
